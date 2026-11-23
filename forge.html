@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="PM 업무를 AI 에이전트와 함께 하기 위한 사내 플러그인 프레임워크를 혼자 설계·개발하고 Git으로 배포해 온 기록.">
+  <title>Douzone-Forge · 차민수</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">본문으로 이동</a>
+  <header class="site-header"><div class="shell nav-row"><a class="brand" href="./"><span class="brand-mark">CM</span><span>차민수 <span class="brand-sub">/ portfolio</span></span></a><nav aria-label="주 메뉴"><a href="./">홈으로</a><a href="#approach">접근</a><a href="#release">배포</a><a href="#timeline">이력</a></nav></div></header>
+  <main id="main" class="demo-main shell">
+    <div class="demo-intro">
+      <span class="section-index">WORK PROJECT / 001</span>
+      <h1>Douzone-Forge</h1>
+      <p>제품 PM의 일을 AI 에이전트(Claude Code)와 함께 하기 위해 만든 사내 플러그인 프레임워크입니다. 기획·설계 문서 작성, 요구사항 검토, 업무 보고처럼 반복되는 일을 「쌓아 둔 맥락」을 기준으로 처리하게 합니다. 설계부터 개발, 동료에게 배포하는 과정까지 혼자 맡았습니다.</p>
+      <div class="tag-row case-tags"><span class="tag">설계·개발·배포 단독</span><span class="tag tag-muted">Claude Code 플러그인 · 스킬 · 훅</span><span class="tag tag-muted">Git 저장소 2개로 개발·배포 분리</span></div>
+      <div class="demo-disclaimer">사내 문서·화면·저장소 주소, 고객과 동료의 이름은 싣지 않았습니다. 아래 수치는 개발 저장소와 변경 이력(CHANGELOG)에서 센 값입니다(2026-11-23 기준).</div>
+    </div>
+
+    <ol class="case-stages forge-stats" aria-label="주요 수치">
+      <li><span>기간</span><strong>8개월</strong><small>2026-03 첫 버전 ~ 2026-11</small></li>
+      <li><span>버전 기록</span><strong>125회</strong><small>v0.3.0 → v1.33.5</small></li>
+      <li><span>구성</span><strong>스킬 70 · 명령 47</strong><small>업무 단위로 나눈 기능</small></li>
+      <li><span>자동 점검</span><strong>훅 23개</strong><small>작업 전후에 규칙을 검사</small></li>
+    </ol>
+
+    <section class="case-section" id="approach" aria-labelledby="approach-title">
+      <div class="section-heading"><span class="section-index">01 / PROBLEM → APPROACH</span><h2 id="approach-title">에이전트에게 일을 맡기며<br>부딪힌 세 가지</h2></div>
+      <div class="case-cards">
+        <article><span class="finding-number">01</span><h3>맥락이 한 번에 들어가지 않는다</h3><p>제품 하나의 기획 자료를 통째로 넣으면 에이전트의 작업 창이 넘칩니다. 그래서 자료를 메뉴 계층 단위로 나눠, 지금 손대는 화면에 필요한 맥락만 불러오게 했습니다. 항상 읽는 요약, 메뉴 단위 개요, 화면 단위 상세의 세 단계입니다.</p></article>
+        <article><span class="finding-number">02</span><h3>작업이 끊기면 처음부터 다시</h3><p>사용량 한도나 네트워크 문제로 세션이 끊기면 어디까지 했는지 잃어버렸습니다. 에이전트가 작업 전후에 진행 상황을 파일에 저장하고, 다음 세션에서 그 지점부터 이어 가도록 했습니다.</p></article>
+        <article><span class="finding-number">03</span><h3>사람마다, 날마다 결과가 다르다</h3><p>같은 요청에도 문서 형식과 저장 위치가 매번 달랐습니다. 지켜야 할 규칙을 문서로 정하고, 커밋 메시지·저장 위치·비밀 정보 노출 같은 항목은 작업할 때마다 자동으로 검사하는 훅으로 막았습니다.</p></article>
+      </div>
+    </section>
+
+    <section class="case-section" id="release" aria-labelledby="release-title">
+      <div class="section-heading"><span class="section-index">02 / GIT RELEASE FLOW</span><h2 id="release-title">개발과 배포를<br>저장소 두 개로 나눴습니다</h2><p class="section-description">고치는 곳과 동료가 받아 가는 곳을 분리해, 검증을 거친 버전만 배포되게 했습니다.</p></div>
+      <div class="release-flow" role="img" aria-label="개발 저장소에서 고치고 커밋한 뒤, 빌드와 검증을 거쳐 배포 저장소에 올리면, 동료의 PC가 새 버전을 받아 간다.">
+        <div><span>01</span><strong>개발 저장소</strong><small>기능 수정 · 커밋 90회</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>02</span><strong>빌드 · 검증</strong><small>배포 전 사실 검증 단계</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>03</span><strong>배포 저장소</strong><small>릴리스 커밋 106회</small></div>
+        <i aria-hidden="true">→</i>
+        <div><span>04</span><strong>동료 PC</strong><small>자동 업데이트로 최신 버전 유지</small></div>
+      </div>
+      <div class="case-cards case-cards-two sync-cards"><article><h3>플러그인: 혼자 개발, 검증 뒤 배포</h3><p>기능은 개발 저장소에서만 고치고, 빌드와 검증을 거친 버전만 배포 저장소에 올립니다. 동료는 배포 저장소만 바라봅니다.</p></article><article><h3>업무 맥락: 모두가 함께 쓰는 저장소</h3><p>쌓아 둔 기획 맥락은 사내 Git 서버의 공용 저장소에 두고, 비개발자도 쓰도록 세션을 시작할 때 받고 마칠 때 올리는 과정을 자동화했습니다. 충돌이 나면 자동으로 합치지 않고 백업 브랜치에 따로 보관합니다. 개인 작업 폴더는 동기화에서 뺐습니다.</p></article></div>
+      <p class="case-note">개발 저장소의 커밋은 2026-04-14부터 센 값입니다. 그 전의 초기 버전(v0.3~v0.5)은 변경 이력에만 남아 있습니다.</p>
+    </section>
+
+    <section class="case-section" id="timeline" aria-labelledby="timeline-title">
+      <div class="section-heading"><span class="section-index">03 / TIMELINE</span><h2 id="timeline-title">버전 이력으로 본<br>8개월</h2></div>
+      <ol class="forge-timeline">
+        <li><time datetime="2026-03">2026-03</time><strong>첫 버전</strong><p>메뉴 계층 단위로 맥락을 나눠 불러오는 구조, 작업 세션 저장, 일정 시트 연동, 문서 정리 기능으로 시작했습니다.</p></li>
+        <li><time datetime="2026-04">2026-04</time><strong>업무 표준화</strong><p>유지보수 요청 검토 절차를 표준으로 만들고, 모두가 쓰는 공용 영역과 개인 작업 영역의 경계를 나눴습니다.</p></li>
+        <li><time datetime="2026-05">2026-05</time><strong>배포 준비와 온보딩 자동화</strong><p>새 사용자의 PC에 Git 신원과 비밀 정보 검사 훅을 자동으로 설정하고, 세션을 시작하고 마칠 때 공용 저장소와 자동으로 동기화하게 했습니다.</p></li>
+        <li><time datetime="2026-06">2026-06</time><strong>자동 업데이트</strong><p>사내 배포 저장소는 자동 업데이트가 기본으로 꺼져 있어, 새 버전이 나와도 각자 직접 받아야 했습니다. 온보딩 단계에서 자동 업데이트를 켜 동료가 늘 최신 버전을 쓰게 했습니다.</p></li>
+        <li><time datetime="2026-07">2026-07</time><strong>설정 누락 막기</strong><p>실제 온보딩에서 도구 등록은 끝났는데 인증을 건너뛰어 진행이 멈추는 일이 여러 번 생겼습니다. 인증을 확인하기 전에는 완료라고 하지 않도록 순서를 고정했습니다.</p></li>
+        <li><time datetime="2026-10">2026-10</time><strong>배포 전 사실 검증</strong><p>배포한 버전을 에이전트 7개로 다시 검증하다, 그 버전이 새로 만든 결함 9건(사실 오류 7건, 문서 누락·불일치 2건)을 찾았습니다. 그 뒤로는 새로 적은 사실을 배포 전에 따로 검증하는 단계를 거칩니다.</p></li>
+      </ol>
+    </section>
+
+    <section class="case-section" aria-labelledby="effect-title">
+      <div class="section-heading"><span class="section-index">04 / RESULT</span><h2 id="effect-title">결과</h2></div>
+      <div class="case-cards case-cards-two">
+        <article><h3>사용 범위</h3><p>2026년 4월 베타 사용자 3명과 함께 쓰기 시작했습니다. 6월부터는 온보딩을 마친 사용자 모두에게 자동 업데이트가 켜지도록 해, 새 버전이 나오면 따로 받지 않아도 최신 버전을 쓰게 했습니다.</p></article>
+        <article><h3>명령 하나로 묶은 일</h3><p>유지보수 요청은 이슈 번호 하나를 넣으면 조회, 관련 자료 분석, 검토안 저장까지 이어서 처리합니다. 새 사용자 준비도 명령 한 번으로 Git 신원, 비밀 정보 검사 훅, 개인 작업 폴더를 설정합니다.</p></article>
+      </div>
+    </section>
+
+    <section class="demo-next"><div><span class="section-index">WHAT I LEARNED</span><h2>에이전트의 「완료」를 믿지 않고 확인하기</h2><p>배포 전 사실 검증을 넣게 된 계기는 이 포트폴리오의 개인 실험과 같습니다. 에이전트가 끝났다고 한 일도 결과 파일과 실제 동작으로 한 번 더 확인합니다.</p></div><a class="text-link" href="demo.html">개인 실험 보기 <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer class="site-footer"><div class="shell footer-row"><span>© 2026 차민수</span><span>공개 가능한 범위에서 정리한 업무 사례</span></div></footer>
+</body>
+</html>

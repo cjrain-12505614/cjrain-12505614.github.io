@@ -899,3 +899,21 @@ h1,h2,h3,p {
 @media(max-width:600px){.case-section{padding-top:70px}.case-gallery{gap:14px}.case-gallery figcaption{font-size:13px}.case-cards-two{grid-template-columns:1fr}.case-arch{grid-template-columns:1fr}.arch-client{writing-mode:horizontal-tb;padding:10px}.arch-watch{grid-column:1}.arch-lane small,.arch-watch small{margin-left:0;flex-basis:100%}.case-stages li{padding:14px}.case-link .case-thumbs img{width:72px}}
 @media(prefers-reduced-motion:reduce){.case-gallery img{transition:none}.case-gallery figure:hover img{transform:none}}
 @media(max-width:600px){.case-table{min-width:0}.case-table thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}.case-table,.case-table tbody,.case-table tr,.case-table td{display:block}.case-table tr{padding:14px 16px;border-bottom:1px solid var(--line)}.case-table tr:last-child{border-bottom:0}.case-table td{border:0;padding:0}.case-table td:first-child{font-weight:700;margin-bottom:2px}.case-table td:nth-child(2){color:var(--muted);font-size:14px}.case-table td:last-child{margin-top:4px}}
+
+/* 사례 페이지: Douzone-Forge */
+.forge-stats strong{font-size:22px}
+.release-flow{margin-top:42px;display:grid;grid-template-columns:1fr auto 1fr auto 1fr auto 1fr;align-items:stretch;gap:10px}
+.release-flow>div{border:1px solid var(--line);border-radius:12px;background:#172226;padding:18px;display:flex;flex-direction:column;gap:4px}
+.release-flow span{font:700 11px ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--accent);letter-spacing:.1em}
+.release-flow strong{font-size:17px}
+.release-flow small{color:var(--muted);font-size:13px}
+.release-flow i{font-style:normal;color:var(--teal);align-self:center}
+.case-note{color:var(--muted);font-size:14px;margin:14px 0 0}
+.forge-timeline{list-style:none;margin:42px 0 0;padding:0;border-left:2px solid var(--line)}
+.forge-timeline li{position:relative;padding:0 0 28px 26px}
+.forge-timeline li:before{content:"";position:absolute;left:-7px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:2px solid var(--accent)}
+.forge-timeline time{font:700 12px ui-monospace,SFMono-Regular,Consolas,monospace;color:var(--accent);letter-spacing:.1em}
+.forge-timeline strong{display:block;font-size:19px;margin:2px 0 4px}
+.forge-timeline p{color:var(--muted);font-size:15px;margin:0;max-width:720px}
+@media(max-width:900px){.release-flow{grid-template-columns:1fr}.release-flow i{transform:rotate(90deg);justify-self:center}}
+.sync-cards{margin-top:18px}
